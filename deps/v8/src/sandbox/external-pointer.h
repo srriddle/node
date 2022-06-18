@@ -16,6 +16,13 @@ V8_INLINE Address DecodeExternalPointer(const Isolate* isolate,
                                         ExternalPointer_t encoded_pointer,
                                         ExternalPointerTag tag);
 
+// Atomically convert an external pointer from on-V8-heap representation to an
+// actual external pointer value and clear its entry in the external pointer
+// table
+V8_INLINE Address DecodeAndClearExternalPointer(
+    Isolate* isolate, ExternalPointer_t encoded_pointer,
+    ExternalPointerTag tag);
+
 constexpr ExternalPointer_t kNullExternalPointer = 0;
 
 // Creates zero-initialized entry in external pointer table and writes the entry
@@ -32,6 +39,10 @@ V8_INLINE void InitExternalPointerField(Address field_address, Isolate* isolate,
 
 // Reads and returns a raw external pointer value.
 V8_INLINE ExternalPointer_t ReadRawExternalPointerField(Address field_address);
+
+// Writes a raw external pointer value at given address.
+V8_INLINE void WriteRawExternalPointerField(Address field_address,
+                                            ExternalPointer_t value);
 
 // Reads external pointer for the field, and decodes it if the sandbox is
 // enabled.
