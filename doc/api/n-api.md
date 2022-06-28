@@ -6308,6 +6308,7 @@ NAPI_EXTERN napi_status napi_can_call_into_js(napi_env env);
 ```
 
 * `[in] env`: The environment that the API is invoked under.
+* `[out] result`: Boolean value that is set to the result of can_call_into_js.
 
 Returns `napi_ok` if the API succeeded.
 
